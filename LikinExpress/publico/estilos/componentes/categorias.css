@@ -1,0 +1,19 @@
+.categorias {
+    & article {
+        cursor: pointer;
+        & > img {
+            border-radius: 50%;
+            box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        & > h3 {
+            text-transform: capitalize;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+        }
+    }
+}
