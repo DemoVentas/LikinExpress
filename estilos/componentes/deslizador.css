@@ -10,6 +10,7 @@
     user-select: none;
     position: relative;
     width: 100%;
+    /* padding: 0 20px; */
     display: grid;
     gap: 10px;
     & > div:nth-of-type(1) {
@@ -77,10 +78,10 @@
         &::-webkit-scrollbar {
             display: none;
         }
-         & > article {
+        & > article {
             scroll-snap-align: start;
             flex: 0 0 calc((100% - (var(--espacio) * (var(--elementos-por-seccion) - 1))) / var(--elementos-por-seccion));
-         }
+        }
     }
     & > div:nth-of-type(2).arrastrando {
         cursor: grabbing;
@@ -114,7 +115,7 @@
         right: -20px;
     }
 }
-.deslizador.ventana {
+.deslizador.completo {
     & > div:nth-of-type(1) {
         position: absolute;
         bottom: 20px;

@@ -1,0 +1,38 @@
+.paginacion {
+    width: 300px;
+    height: auto;
+    /* margin: 0 auto; */
+    justify-self: center;
+    border-radius: 8px;
+    /* box-shadow: 0 1px 5px rgb(0 0 0 / 15%); */
+    overflow: hidden;
+
+    & > ul {
+        list-style: none;
+        display: grid;
+        grid-auto-flow: column;
+        & > li {
+            display: grid;
+            align-items: center;
+            justify-items: center;
+            padding: 0 0 10px 0;
+            border-bottom:2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            &.activo,
+            &:hover {
+                border-bottom:2px solid #9c2121;
+            }
+            & > a {
+                font-size: 12px;
+                text-decoration: none; 
+                color: #000;   
+                text-align: center;
+            }
+        }
+    }
+    & > button {
+        display: none;
+        margin: 0 auto;
+    }
+}

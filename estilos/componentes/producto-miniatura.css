@@ -1,0 +1,72 @@
+article.producto {
+    position: relative;
+    height: auto;
+    display: inline-grid;
+    gap: var(--espacio);
+    & > a {
+        text-decoration: none;
+        color: #000;
+        & > div:nth-of-type(1) {
+            position: relative;
+            & > img {
+                position: relative;
+                width: 100%;
+                height: auto;
+                transition: all 0.8s ease;
+                user-select: none;
+                z-index: 1;
+            }
+            & > img:nth-of-type(2) {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+            & > img:nth-of-type(1):hover {
+                opacity: 0;
+            }
+        }
+        & > div:nth-of-type(2) {
+            display: grid;
+            gap: 10px;
+            & > h3,
+            & > del,
+            & > span {
+                font-size: 14px;
+            }
+            & > h3 {
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+            & > del {
+                color: #7b0000;
+            }
+            & > span {
+          
+            }
+            /* & > span,
+            & > del {
+                & > span {
+                    font-size: 10px;
+                    vertical-align: text-top;
+                }
+            } */
+        }
+        & > dl {
+            display: grid;
+            gap: 10px;
+            & > div {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+
+            }
+        }
+        & > dl,
+        & > p {
+            display: none;
+            grid-column: span 2;
+            max-height: 100%;
+            overflow-y: auto;
+        }
+    }
+}

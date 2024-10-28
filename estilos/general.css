@@ -23,6 +23,7 @@ main {
     width: 100%;
     display: grid;
     gap: 20px;
+    min-height: calc(100dvh - 55px);
 
     & > section {
         margin: 0 20px;
@@ -31,14 +32,13 @@ main {
 }
 .contenedor {
     width: calc(100% - 40px);
-    height: auto;
+    height: fit-content;
     padding: 20px;
     background: #ffffff;
     box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
     border-radius: 8px;
     display: grid;
     gap: 20px;
-    overflow: hidden;
 }
 @media (width > 1300px) {
     main {

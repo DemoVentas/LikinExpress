@@ -17,6 +17,7 @@ class Deslizador {
         this.inicializarTeclas();
         this.inicializarArrastreEscritorio();
         this.inicializarArrastreTactil(); 
+        this.inicializarArrastrePanel();
         this.inicializar(); 
 
         window.addEventListener('resize', () => this.inicializar());
@@ -38,7 +39,7 @@ class Deslizador {
 
     recalcularElementos() {
         this.deslizadorContenido = this.deslizadorElemento.querySelector('div:nth-of-type(2)');
-        this.elementosDeslizador = this.deslizadorContenido.children; 
+        this.elementosDeslizador = Array.from(this.deslizadorContenido.children);
     }
 
     recalcularBotones() {
@@ -135,11 +136,8 @@ class Deslizador {
         const finalX = e.clientX || e.changedTouches[0].clientX;
         const direccionX = finalX - this.inicialX;  
 
-        if (direccionX > 0) {
-            this.cambiarSeccion('anterior');
-        } else if (direccionX < 0) {
-            this.cambiarSeccion('siguiente');
-        }
+        const direccion = direccionX > 0 ? 'anterior' : 'siguiente';
+        this.cambiarSeccion(direccion);
     }
     inicializarEnfoque() {
         this.deslizadorElemento.addEventListener('mouseenter', () => {
@@ -163,12 +161,10 @@ class Deslizador {
         document.addEventListener('keydown', (event) => {
             if (!this.enfoque) return;
 
-            if (event.key === 'ArrowLeft') {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
                 event.preventDefault();
-                this.cambiarSeccion('anterior');
-            } else if (event.key === 'ArrowRight') {
-                event.preventDefault();
-                this.cambiarSeccion('siguiente'); 
+                const direccion = event.key === 'ArrowLeft' ? 'anterior' : 'siguiente';
+                this.cambiarSeccion(direccion);
             }
 
             if (event.key >= '1' && event.key <= '9') {
@@ -220,7 +216,33 @@ class Deslizador {
             console.warn('El contenido del deslizador no ha cargado.');
         }
     }
+    inicializarArrastrePanel() {
+        let pausaArrastre;
+        let arrastreActivo = false;
 
+        this.deslizadorContenido.addEventListener('wheel', (event) => {
+            if (event.shiftKey && Math.abs(event.deltaY) > 0) {
+                event.preventDefault();
+                this.cambiarSeccion(event.deltaY > 0 ? 'siguiente' : 'anterior');
+            }
+        });
+
+        this.deslizadorContenido.addEventListener('wheel', (event) => {
+            if (Math.abs(event.deltaX) > 0) {
+                event.preventDefault();
+    
+                if (!arrastreActivo) {
+                    this.cambiarSeccion(event.deltaX > 0 ? 'siguiente' : 'anterior');
+                    arrastreActivo = true; // Set flag to ignore additional triggers
+                }
+
+                clearTimeout(pausaArrastre);
+                pausaArrastre = setTimeout(() => {
+                    arrastreActivo = false;
+                }, 50);
+            }
+        });
+    }
 }
 
 document.querySelectorAll('.deslizador').forEach(deslizadorElemento => {
