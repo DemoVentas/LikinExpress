@@ -9,10 +9,9 @@ div.producto {
         width: 100%;
     }
     & > div:nth-of-type(1) {
-        border-radius: 8px;
-        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-        aspect-ratio: 3/4;
+        /* border-radius: 8px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15); */
+        /* overflow: hidden; */
 
         & > img {
             width: 100%;

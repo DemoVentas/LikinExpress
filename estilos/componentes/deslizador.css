@@ -1,11 +1,3 @@
-@keyframes Movimiento {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
 .deslizador {
     user-select: none;
     position: relative;
@@ -30,19 +22,19 @@
             display: grid;
             justify-self: end;
             grid-auto-flow: column;
-            grid-auto-columns: 1fr;
+            grid-auto-columns: max-content;
             width: fit-content;
             height: 14.5px;
             align-items: center;
-            gap: 7.5px;
+            gap: 6.5px;
             scrollbar-width: none;
             & > button {
                 position: relative;
                 background: #9c2121;
                 border: none;
-                border-radius: 50%;
-                width: 7px;
-                height: 7px;
+                border-radius: 8px;
+                width: 6px;
+                height: 6px;
                 cursor: pointer;
                 opacity: 0.5;
                 transition: all 0.3s ease;
@@ -53,15 +45,18 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                border-radius: 50%;
-                height: 14.5px;
-                width: 14.5px;
+                /* border-radius: 50%; */
+                height: 12.5px;
+                width: 12.5px;
                 background: transparent;
                 z-index: 2;
             }
             & > button.activo,
             & > button:hover {
                 opacity: 1;
+            }
+            & > button.activo {
+                width: 14px;
             }
         }
     }
